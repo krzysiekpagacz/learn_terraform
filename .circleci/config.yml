@@ -10,6 +10,11 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - run: echo WORLD
+  my-name:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: echo $MY_NAME
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
