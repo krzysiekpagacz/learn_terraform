@@ -1,8 +1,11 @@
 version: 2.1
+defaults: &docker_image
+  docker:
+    - image: circleci/node:13.8.0
+
 jobs:
   save_hello_world_output:
-    docker:
-      - image: circleci/node:13.8.0
+    <<: *docker_image
     steps:
       - run: echo "hello world" > ~/output.txt
       - persist_to_workspace:
@@ -10,16 +13,14 @@ jobs:
           paths:
             - output.txt
   print_output_file:
-    docker:
-      - image: circleci/node:13.8.0
+    <<: *docker_image
     steps:
       - attach_workspace:
           at: ~/
       - run: cat ~/output.txt
 
   save_hello_to_cache:
-    docker:
-      - image: circleci/node:13.8.0
+    <<: *docker_image
     steps:
       - run: echo "hello world" > ~/output.txt
       - save_cache:
@@ -28,8 +29,7 @@ jobs:
             - ~/output.txt
 
   print_hello_from_cache:
-    docker:
-      - image: circleci/node:13.8.0
+    <<: *docker_image
     steps:
       - restore_cache:
           key: myKey-{{ .Environment.MY_NAME }}
