@@ -4,6 +4,6 @@ resource "aws_subnet" "private_subnet" {
   cidr_block = var.cidrs[count.index]
 
   tags = {
-    Name = "private subnet"
+    Name = "private-subnet_%{if var.tag_suffix != ""}${var.tag_suffix}%{endif}"
   }
 }
