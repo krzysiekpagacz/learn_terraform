@@ -31,9 +31,10 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: cat ~/output.txt
       - restore_cache:
           key: myKey-{{ .Environment.MY_NAME }}
+      - run: cat ~/output.txt
+
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
