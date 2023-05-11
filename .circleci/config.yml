@@ -16,7 +16,7 @@ jobs:
     steps:
       - run: echo $MY_NAME
 
-# Orchestrate jobs using workflows
+#  Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
   first-workflow:
