@@ -18,7 +18,7 @@ jobs:
     <<: *docker_image
     steps:
       - print-out:
-          input: "save_hello_world_output"
+          input2: "save_hello_world_output"
       - persist_to_workspace:
           root: ~/
           paths:
@@ -45,6 +45,14 @@ jobs:
       - restore_cache:
           key: myKey-{{ .Environment.MY_NAME }}
       - run: cat ~/output.txt
+
+  print_on_fail:
+    <<: *docker_image
+    steps:
+      - run:
+          name: print that failed
+          print-out:
+            input: "Pipeline failed"
 
 
 # Orchestrate jobs using workflows
