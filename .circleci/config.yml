@@ -10,7 +10,7 @@ commands:
         type: string
         default: "Hello World"
     steps:
-      - run: echo "<< parameters.to >>"" > ~/output.txt
+      - run: echo "<< parameters.to >>" > ~/output.txt
 
 
 jobs:
