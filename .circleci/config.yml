@@ -33,7 +33,7 @@ jobs:
   save_hello_to_cache:
     <<: *docker_image
     steps:
-      - run: echo "hello world" > ~/output.txt
+      - print-out
       - save_cache:
           key: myKey-{{ .Environment.MY_NAME }}
           paths:
