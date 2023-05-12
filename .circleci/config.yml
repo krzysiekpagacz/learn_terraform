@@ -6,11 +6,11 @@ defaults: &docker_image
 commands:
   print-out:
     parameters:
-      to:
+      input:
         type: string
         default: "Hello World"
     steps:
-      - run: echo "<< parameters.to >>" > ~/output.txt
+      - run: echo "<< parameters.input >>" > ~/output.txt
 
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
     <<: *docker_image
     steps:
       - print-out:
-          to: "save_hello_world_output"
+          input: "save_hello_world_output"
       - persist_to_workspace:
           root: ~/
           paths:
