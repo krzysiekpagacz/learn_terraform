@@ -49,11 +49,11 @@ jobs:
   print_on_fail:
     <<: *docker_image
     steps:
+      - run: exit 1
       - run:
-          name: print that failed
-          print-out:
-            input: "Pipeline failed"
-        when: on_fail
+          name: on error
+          command: echo "Hellow Error"
+          when: on_fail
 
 
 # Orchestrate jobs using workflows
@@ -69,3 +69,4 @@ workflows:
       - print_hello_from_cache:
           requires:
             - save_hello_to_cache
+      - print_on_fail
