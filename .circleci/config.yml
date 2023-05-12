@@ -18,7 +18,7 @@ jobs:
     <<: *docker_image
     steps:
       - print-out:
-          input2: "save_hello_world_output"
+          input: "save_hello_world_output"
       - persist_to_workspace:
           root: ~/
           paths:
@@ -53,6 +53,7 @@ jobs:
           name: print that failed
           print-out:
             input: "Pipeline failed"
+        when: on_fail
 
 
 # Orchestrate jobs using workflows
