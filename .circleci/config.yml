@@ -5,12 +5,12 @@ defaults: &docker_image
 
 commands:
   print-out:
-    description: "saves value of the attribute passed to the file"
-    value:
-      type: string
-      default: "Hello World"
+    parameters:
+      to:
+        type: string
+        default: "Hello World"
     steps:
-      - run: echo << parameters.value >> > ~/output.txt
+      - run: echo "<< parameters.to >>"" > ~/output.txt
 
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
     <<: *docker_image
     steps:
       - print-out:
-          value: "save_hello_world_output"
+          to: "save_hello_world_output"
       - persist_to_workspace:
           root: ~/
           paths:
