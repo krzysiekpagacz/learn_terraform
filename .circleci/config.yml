@@ -3,11 +3,22 @@ defaults: &docker_image
   docker:
     - image: circleci/node:13.8.0
 
+commands:
+  print-out:
+    description: "saves value of the attribute passed to the file"
+    value:
+      type: string
+      default: "Hello World"
+    steps:
+      - run: echo << parameters.value >> > ~/output.txt
+
+
 jobs:
   save_hello_world_output:
     <<: *docker_image
     steps:
-      - run: echo "hello world" > ~/output.txt
+      - print-out:
+          value: "save_hello_world_output"
       - persist_to_workspace:
           root: ~/
           paths:
